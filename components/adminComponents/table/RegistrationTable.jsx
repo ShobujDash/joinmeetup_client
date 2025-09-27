@@ -65,8 +65,8 @@ import {
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Download } from "lucide-react";
 import dynamic from "next/dynamic";
-import TicketModal from "../modal/DownloadTicketModal";
 import DownloadInvoiceModal from "../modal/DownloadInvoiceModal";
+import TicketModal from "../modal/DownloadTicketModal";
 const CSVLink = dynamic(() => import("react-csv").then((mod) => mod.CSVLink), {
   ssr: false,
 });
@@ -132,6 +132,8 @@ export function RegistrationTable({ data: initialData, userRole }) {
     useSensor(KeyboardSensor, {})
   );
 
+  console.log("Registered Date ===>", data);
+
   const [showModal, setShowModal] = React.useState(false);
   const [invoiceShowModal, setInvoiceShowModal] = React.useState(false);
   const [selectedEvent, setSelectedEvent] = React.useState(null);
@@ -189,25 +191,46 @@ export function RegistrationTable({ data: initialData, userRole }) {
     }
   }
 
-  const csvHeaders = [
-    { label: "Booking ID", key: "id" },
-    { label: "Event ID", key: "eventId" },
-    { label: "Ticket ID", key: "ticketId" },
-    { label: "Created By", key: "createdBy" },
-    { label: "Order Confirmed", key: "order" },
-    { label: "Ticket Count", key: "ticketCount" },
-    { label: "Ticket Price", key: "ticketPrice" },
-    { label: "Ticket Type", key: "ticketType" },
-    { label: "User Info", key: "userJsonString" }, // <-- stringify version
-    { label: "Attendee Info", key: "attendeeJsonString" }, // <-- stringify version
-    { label: "Created At", key: "createdAt" },
-    { label: "Updated At", key: "updatedAt" },
-  ];
-  const preparedData = data.map((item) => ({
-    ...item,
-    userJsonString: JSON.stringify(item.userJson),
-    attendeeJsonString: JSON.stringify(item.attendeeJson),
-  }));
+  // ✅ role অনুযায়ী CSV header
+  const csvHeaders =
+    userRole === "user" || userRole === "eventCreator"
+      ? [
+          { label: "Event Name", key: "eventName" },
+          { label: "Ticket Type", key: "ticketType" },
+          { label: "Member", key: "ticketCount" },
+          { label: "Price", key: "ticketPrice" },
+          { label: "Purchase Date", key: "createdAt" },
+        ]
+      : [
+          { label: "Booking ID", key: "id" },
+          { label: "Event ID", key: "eventId" },
+          { label: "Ticket ID", key: "ticketId" },
+          { label: "Created By", key: "createdBy" },
+          { label: "Order Confirmed", key: "order" },
+          { label: "Ticket Count", key: "ticketCount" },
+          { label: "Ticket Price", key: "ticketPrice" },
+          { label: "Ticket Type", key: "ticketType" },
+          { label: "User Info", key: "userJsonString" },
+          { label: "Attendee Info", key: "attendeeJsonString" },
+          { label: "Created At", key: "createdAt" },
+          { label: "Updated At", key: "updatedAt" },
+        ];
+
+  // ✅ role অনুযায়ী preparedData
+  const preparedData =
+    userRole === "user" || userRole === "eventCreator"
+      ? data.map((item) => ({
+          eventName: item.event.eName,
+          ticketType: item.ticketType,
+          ticketCount: item.ticketCount,
+          ticketPrice: item.ticketPrice,
+          createdAt: item.createdAt,
+        }))
+      : data.map((item) => ({
+          ...item,
+          userJsonString: JSON.stringify(item.userJson),
+          attendeeJsonString: JSON.stringify(item.attendeeJson),
+        }));
 
   return (
     <>
