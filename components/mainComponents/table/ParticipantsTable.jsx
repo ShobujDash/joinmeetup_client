@@ -363,24 +363,32 @@ export function ParticipantsTable({ data: initialData, children, eventId }) {
     }
   }
 
+  // ✅ CSV header (শুধু দরকারি ফিল্ড)
   const csvHeaders = [
-    { label: "Booking ID", key: "id" },
-    { label: "Event ID", key: "eventId" },
-    { label: "Ticket ID", key: "ticketId" },
-    { label: "Created By", key: "createdBy" },
-    { label: "Order Confirmed", key: "order" },
-    { label: "Ticket Count", key: "ticketCount" },
-    { label: "Ticket Price", key: "ticketPrice" },
+    { label: "User Name", key: "userName" },
+    { label: "User Email", key: "userEmail" },
+    { label: "Event Name", key: "eventName" },
     { label: "Ticket Type", key: "ticketType" },
-    { label: "User Info", key: "userJsonString" }, // <-- stringify version
-    { label: "Attendee Info", key: "attendeeJsonString" }, // <-- stringify version
-    { label: "Created At", key: "createdAt" },
-    { label: "Updated At", key: "updatedAt" },
+    { label: "Member", key: "ticketCount" },
+    { label: "Price", key: "ticketPrice" },
+    { label: "Purchase Time", key: "createdAt" },
   ];
+
+  // ✅ CSV data প্রস্তুত করা
   const preparedData = data.map((item) => ({
-    ...item,
-    userJsonString: JSON.stringify(item.userJson),
-    attendeeJsonString: JSON.stringify(item.attendeeJson),
+    userName: item.userName,
+    userEmail: item.userEmail,
+    eventName:
+      item.eventName.split(" ").slice(0, 4).join(" ") +
+      (item.eventName.split(" ").length > 4 ? "..." : ""),
+    ticketType: item.ticketType,
+    ticketCount: item.ticketCount,
+    ticketPrice: item.ticketPrice,
+    createdAt: new Date(item.createdAt).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }), // যেমন: 9 Jan 2025
   }));
 
   return (
