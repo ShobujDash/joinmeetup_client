@@ -67,11 +67,18 @@ const NavButton = () => {
             <PopoverContent className="w-40 bg-gray-200 p-2 rounded-md mr-2 mt-2">
               <div className="grid gap-2">
                 <div className="space-y-2">
-                  <Link href="/dashboard/events" onClick={() => setOpen(false)}>
-                    <Button variant="outline" className="w-full cursor-pointer">
-                      Dashboard
-                    </Button>
-                  </Link>
+                 <Button
+                    variant="outline"
+                    className="w-full cursor-pointer"
+                    onClick={() => {
+                      if (!loading) {
+                        setOpen(false);
+                        router.push("/dashboard/events");
+                      }
+                    }}
+                  >
+                    Dashboard
+                  </Button>
                 </div>
                 <div className="space-y-2">
                   <Button
