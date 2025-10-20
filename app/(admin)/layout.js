@@ -32,6 +32,7 @@ export default async function AdminLayout({ children }) {
     });
 
     // if response is not OK, throw error manually
+    console.log("response is ok = " , res?.ok);
     if (!res.ok) {
       redirect("/login");
     }
@@ -40,7 +41,7 @@ export default async function AdminLayout({ children }) {
   } catch (err) {
     redirect("/login");
   }
-
+    console.log("data is ok = " , data?.success);
   if (!data?.success) {
     redirect("/login");
   }
