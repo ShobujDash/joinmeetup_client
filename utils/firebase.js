@@ -7,7 +7,7 @@ const firebaseConfig = {
   storageBucket: "joinmeetupbd.firebasestorage.app",
   messagingSenderId: "234684932675",
   appId: "1:234684932675:web:a75b9e12a618b937bdeaf6",
-  measurementId: "G-888D79N23B"
+  measurementId: "G-888D79N23B",
 };
 
 

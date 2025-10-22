@@ -67,7 +67,7 @@ const NavButton = () => {
             <PopoverContent className="w-40 bg-gray-200 p-2 rounded-md mr-2 mt-2">
               <div className="grid gap-2">
                 <div className="space-y-2">
-                 <Button
+                  <Button
                     variant="outline"
                     className="w-full cursor-pointer"
                     onClick={() => {
