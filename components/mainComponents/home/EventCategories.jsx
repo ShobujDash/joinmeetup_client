@@ -5,7 +5,6 @@ import {
   Users,
   Music,
   HeartPulse,
-  DeviceLaptop,
   Laptop,
   Palette,
   Dice6,

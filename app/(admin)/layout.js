@@ -13,37 +13,6 @@ export const metadata = {
 };
 
 export default async function AdminLayout({ children }) {
-  // const cookieStore = await cookies();
-  // const token = cookieStore.get("token")?.value;
-
-  // if (!token) {
-  //   redirect("/login");
-  // }
-
-  // let data;
-
-  // try {
-  //   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/auth/me`, {
-  //     method: "GET",
-  //     headers: {
-  //       Cookie: `token=${token}`,
-  //     },
-  //     cache: "no-store",
-  //   });
-
-  //   // if response is not OK, throw error manually
-  //   if (!res.ok) {
-  //     redirect("/login");
-  //   }
-
-  //   data = await res.json();
-  // } catch (err) {
-  //   redirect("/login");
-  // }
-
-  // if (!data?.success) {
-  //   redirect("/login");
-  // }
 
   return (
     <AuthProvider>

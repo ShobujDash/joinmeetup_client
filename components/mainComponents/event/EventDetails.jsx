@@ -31,7 +31,9 @@ const EventDetails = ({ event }) => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 ">
             {event?.eName}
           </h1>
+          
           <div className="flex gap-6 items-center overflow-x-auto no-scrollbar py-2">
+
             {/* Total Seat */}
             <p className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300 shrink-0 text-center">
               <Users className="w-4 h-4" />
@@ -85,7 +87,7 @@ const EventDetails = ({ event }) => {
               </span>
             </p>
           </div>
-
+          
           {/* Date & Time + Join Button */}
           <div className="flex flex-col sm:flex-row justify-between items-start gap-6 my-2 text-gray-700 text-sm sm:text-base">
             <div className="flex flex-col sm:flex-row gap-6 items-start">
