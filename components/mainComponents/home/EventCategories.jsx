@@ -6,6 +6,7 @@ import {
   Music,
   HeartPulse,
   DeviceLaptop,
+  Laptop,
   Palette,
   Dice6,
   Microscope,
@@ -40,7 +41,7 @@ const categories = [
   { title: "Health & Fitness", icon: HeartPulse, color: "text-teal-600" },
   {
     title: "Technology & Innovation",
-    icon: DeviceLaptop,
+    icon: Laptop,
     color: "text-purple-600",
   },
   { title: "Art & Culture", icon: Palette, color: "text-orange-500" },

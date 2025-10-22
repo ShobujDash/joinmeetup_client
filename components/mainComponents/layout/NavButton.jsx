@@ -68,12 +68,14 @@ const NavButton = () => {
               <div className="grid gap-2">
                 <div className="space-y-2">
                   <Button
-                    onClick={() => {
-                      setOpen(false);
-                      router.push("/dashboard/events");
-                    }}
                     variant="outline"
                     className="w-full cursor-pointer"
+                    onClick={() => {
+                      if (!loading) {
+                        setOpen(false);
+                        router.push("/dashboard/events");
+                      }
+                    }}
                   >
                     Dashboard
                   </Button>

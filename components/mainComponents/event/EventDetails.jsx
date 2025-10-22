@@ -31,19 +31,31 @@ const EventDetails = ({ event }) => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 ">
             {event?.eName}
           </h1>
-          <div className="flex gap-6 items-center">
-            <p className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300">
+          <div className="flex gap-6 items-center overflow-x-auto no-scrollbar py-2">
+            {/* Total Seat */}
+            <p className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300 shrink-0 text-center">
               <Users className="w-4 h-4" />
-              Total Seat
-              <span className="font-semibold">{event?.totalTickets}</span>
+              <span className="flex items-center gap-1">
+                {/* mobile এ শুধু 'Total', sm+ এ 'Total Seat' */}
+                <span className="sm:inline hidden">Total Seat</span>
+                <span className="sm:hidden inline">Total</span>
+                <span className="font-semibold">{event?.totalTickets}</span>
+              </span>
             </p>
 
-            <p className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300">
+            {/* Seat Booked */}
+            <p className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300 shrink-0 text-center">
               <Users className="w-4 h-4" />
-              Seat Booked{" "}
-              <span className="font-semibold">{event?.totalMember}</span>
+              <span className="flex items-center gap-1">
+                {/* mobile এ শুধু 'Booked', sm+ এ 'Seat Booked' */}
+                <span className="sm:inline hidden">Seat Booked</span>
+                <span className="sm:hidden inline">Booked</span>
+                <span className="font-semibold">{event?.totalMember}</span>
+              </span>
             </p>
-            <p className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300">
+
+            {/* Online / Offline */}
+            <p className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300 shrink-0 text-center">
               {event?.isOnline ? (
                 <Video className="w-4 h-4 text-white" />
               ) : (
@@ -54,7 +66,8 @@ const EventDetails = ({ event }) => {
               </span>
             </p>
 
-            <p className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300">
+            {/* Refund Policy */}
+            <p className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-black transition duration-300 shrink-0 text-center">
               {event?.refindPolicy === "no-refund" && (
                 <Ban className="w-4 h-4 text-red-300" />
               )}
@@ -64,7 +77,6 @@ const EventDetails = ({ event }) => {
               {event?.refindPolicy === "full-refund" && (
                 <Wallet className="w-4 h-4 text-green-300" />
               )}
-
               <span>
                 {event?.refindPolicy
                   ?.split("-")
