@@ -16,6 +16,8 @@ import { useAuth } from "@/context/AuthContext";
 import { LayoutTemplate } from "lucide-react";
 import Link from "next/link";
 import { NavSide } from "./nav-side";
+import Image from "next/image";
+import { Logo } from "@/public/assets/assets";
 
 export function AppSidebar({ ...props }) {
   const { user } = useAuth();
@@ -113,10 +115,12 @@ export function AppSidebar({ ...props }) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <IconInnerShadowTop className="!size-5 text-blue-800" />
-                <span className="text-base font-semibold text-blue-800">
-                  MeetUpBD
-                </span>
+                <Image
+                  src={Logo}
+                  width={150}
+                  height={150}
+                  alt="Logo"
+                />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
